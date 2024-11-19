@@ -33,6 +33,8 @@ def main():
             kk_rct.move_ip((-1, 0))
         if key_lst[pg.K_RIGHT]: 
             kk_rct.move_ip((1, 0))
+        if not key_lst[pg.K_RIGHT]: 
+            kk_rct.move_ip((-1, 0))
         screen.blit(kk_img, kk_rct)
         pg.display.update()
         tmr += 1        
