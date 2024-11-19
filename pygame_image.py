@@ -16,25 +16,30 @@ def main():
     kk_rct = kk_img.get_rect()
     kk_rct.center = 300, 200
     tmr = 0
+    key_x = 0
+    key_y = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         x = tmr%3200
+        key_x = 0
+        key_y = 0
         screen.blit(bg_img, [-x, 0]) # sucreen ssufaceに背景画像
         screen.blit(bg_img_2, [-x+1600, 0])
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bg_img_2, [-x+4800, 0])
         key_lst = pg.key.get_pressed()
         if key_lst[pg.K_UP]: 
-            kk_rct.move_ip((0, -1))
+            key_y -= 1
         if key_lst[pg.K_DOWN]: 
-            kk_rct.move_ip((0, 1))
+            key_y += 1
         if key_lst[pg.K_LEFT]: 
-            kk_rct.move_ip((-1, 0))
+            key_x -= 1
         if key_lst[pg.K_RIGHT]: 
-            kk_rct.move_ip((1, 0))
+            key_x += 1
         if not key_lst[pg.K_RIGHT]: 
-            kk_rct.move_ip((-1, 0))
+            key_x -= 1
+        kk_rct.move_ip((key_x, key_y))
         screen.blit(kk_img, kk_rct)
         pg.display.update()
         tmr += 1        
